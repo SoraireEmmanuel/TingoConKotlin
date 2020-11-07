@@ -10,7 +10,8 @@ import kotlinx.android.synthetic.main.tareas_recycler.view.*
 import kotlin.collections.ArrayList
 
 
-class TareasAdapter (private val tareas: ArrayList<Tareas> = ArrayList(), private val cellClickListener: CellClickListener): RecyclerView.Adapter<TareasAdapter.TareaViewHolder>() {
+class TareasAdapter (private val tareas: ArrayList<Tareas> = ArrayList(), private val cellClickListener: CellClickListener,
+                     private val modo:String): RecyclerView.Adapter<TareasAdapter.TareaViewHolder>() {
 
     class TareaViewHolder(view:View):RecyclerView.ViewHolder(view)
 
@@ -30,6 +31,17 @@ class TareasAdapter (private val tareas: ArrayList<Tareas> = ArrayList(), privat
     override fun onBindViewHolder(holder: TareaViewHolder, position: Int) {
         val data=tareas[position]
         holder.itemView.tituloTarea.text = tareas[position].nombre
+        holder.itemView.tituloTarea2.text = tareas[position].nombre
+
+        if(modo == "usuario"){
+            holder.itemView.tituloTarea.visibility=View.VISIBLE
+            holder.itemView.tituloTarea2.visibility=View.GONE
+        }
+        if(modo == "administrador"){
+            holder.itemView.tituloTarea.visibility=View.GONE
+            holder.itemView.tituloTarea2.visibility=View.VISIBLE
+        }
+
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener()
         }

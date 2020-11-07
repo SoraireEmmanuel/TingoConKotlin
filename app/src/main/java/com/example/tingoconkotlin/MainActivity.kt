@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tingoconkotlin.adaptadores.TareasAdapter
@@ -15,6 +16,8 @@ import kotlin.collections.arrayListOf as arrayListOf1
 
 class MainActivity : AppCompatActivity(), TareasAdapter.CellClickListener {
     val tareas= arrayListOf1<Tareas>()
+    var modo = "usuario"
+    var posicion = Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +27,26 @@ class MainActivity : AppCompatActivity(), TareasAdapter.CellClickListener {
         setContentView(R.layout.activity_main)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+/*
+        vistaCrearTareas.visibility=View.GONE
+        vistaEjecucionTareas.visibility=View.GONE
+        vistamenubotones.visibility=View.GONE
+        recyclerListaTareas.visibility=View.GONE
+        recyclerEliminarTareas.visibility=View.GONE
+        vistamenu.visibility=View.GONE
+        vistaAgregarResponsable.visibility=View.GONE
+ */
+
 
         //Funcion boton Menu
-        val menuFragment= MenuFragment()
         menu.setOnClickListener {
-            menuFragment.show(supportFragmentManager, "BottomSheetDialog")
+        vistaCrearTareas.visibility=View.GONE
+        vistaEjecucionTareas.visibility=View.GONE
+        vistamenubotones.visibility=View.GONE
+        recyclerListaTareas.visibility=View.GONE
+        vistamenu.visibility=View.VISIBLE
+        vistaAgregarResponsable.visibility=View.GONE
+        modo = "administrador"
         }
 
         //Funcion boton Salir
@@ -39,18 +57,104 @@ class MainActivity : AppCompatActivity(), TareasAdapter.CellClickListener {
             startActivity(intent)
         }
 
+        /*
+        * Funciones del Menu Administrador
+        *
+        * */
+        //Boton Volver
+        botonVolver.setOnClickListener {
+            vistaCrearTareas.visibility=View.GONE
+            vistaEjecucionTareas.visibility=View.GONE
+            vistamenubotones.visibility=View.VISIBLE
+            recyclerListaTareas.visibility=View.VISIBLE
+            vistamenu.visibility=View.GONE
+            vistaAgregarResponsable.visibility=View.GONE
+            modo = "usuario"
+        }
+        //Boton Agregar Tarea
+        botonAgregarTarea.setOnClickListener {
+            vistaCrearTareas.visibility=View.VISIBLE
+            vistaEjecucionTareas.visibility=View.GONE
+            vistamenubotones.visibility=View.GONE
+            recyclerListaTareas.visibility=View.GONE
+            vistamenu.visibility=View.GONE
+            vistaAgregarResponsable.visibility=View.GONE
+            modo = "administrador"
+        }
+        //Boton Eliminar Tarea
+        botonEliminarTarea.setOnClickListener {
+            vistaCrearTareas.visibility = View.GONE
+            vistaEjecucionTareas.visibility = View.GONE
+            vistamenubotones.visibility = View.GONE
+            recyclerListaTareas.visibility = View.VISIBLE
+            vistamenu.visibility = View.GONE
+            vistaAgregarResponsable.visibility = View.GONE
+            modo = "administrador"
+        }
+        //Agregar Responsable
+        botonAgregarResponsable.setOnClickListener {
+            vistaCrearTareas.visibility = View.GONE
+            vistaEjecucionTareas.visibility = View.GONE
+            vistamenubotones.visibility = View.GONE
+            recyclerListaTareas.visibility = View.GONE
+            vistamenu.visibility = View.GONE
+            vistaAgregarResponsable.visibility = View.VISIBLE
+            modo = "administrador"
+        }
+        /*
+        *Ver Tarea
+         */
+        botonAbandonarTarea.setOnClickListener {
+            vistaCrearTareas.visibility = View.GONE
+            vistaEjecucionTareas.visibility = View.GONE
+            vistamenubotones.visibility = View.VISIBLE
+            recyclerListaTareas.visibility = View.VISIBLE
+            vistamenu.visibility = View.GONE
+            vistaAgregarResponsable.visibility = View.GONE
+        }
+
+        /*
+        * Crear Tarea
+        * */
+        //boton cancelar
+        botonCancelarCrearTarea.setOnClickListener {
+            vistaCrearTareas.visibility=View.GONE
+            vistaEjecucionTareas.visibility=View.GONE
+            vistamenubotones.visibility=View.VISIBLE
+            recyclerListaTareas.visibility=View.VISIBLE
+            vistamenu.visibility=View.GONE
+            vistaAgregarResponsable.visibility=View.GONE
+            modo = "usuario"
+        }
+        //boton agregar paso
+        //boton terminar tarea
+        //boton agregar ayuda
+
+        /*
+        * vista agregar responsable
+        * */
+        botonCancelarAgregarResponsable.setOnClickListener {
+            vistaCrearTareas.visibility=View.GONE
+            vistaEjecucionTareas.visibility=View.GONE
+            vistamenubotones.visibility=View.VISIBLE
+            recyclerListaTareas.visibility=View.VISIBLE
+            vistamenu.visibility=View.GONE
+            vistaAgregarResponsable.visibility=View.GONE
+            modo = "usuario"
+        }
+        botonGuardarAgregarResponsable.setOnClickListener {
+            vistaCrearTareas.visibility=View.GONE
+            vistaEjecucionTareas.visibility=View.GONE
+            vistamenubotones.visibility=View.VISIBLE
+            recyclerListaTareas.visibility=View.VISIBLE
+            vistamenu.visibility=View.GONE
+            vistaAgregarResponsable.visibility=View.GONE
+            modo = "usuario"
+        }
         cargarTareas()
-        recyclerListaTareas.adapter =
-            TareasAdapter(tareas, this)
+        recyclerListaTareas.adapter = TareasAdapter(tareas, this, modo)
         recyclerListaTareas.layoutManager = LinearLayoutManager(this)
 
-        // recyclerMisTareas.setLayoutManager(LinearLayoutManager(this))   equivalente en java
-
-/*
-        val adaptador =
-            TareasAdapter(tareas, this)
-        recyclerListaTareas.setAdapter(adaptador)
-  */
     }
 
     private fun cargarTareas() {
@@ -77,8 +181,33 @@ class MainActivity : AppCompatActivity(), TareasAdapter.CellClickListener {
     }
 
     override fun onCellClickListener() {
-        val intento = Intent(this, EjecucionTareaActivity::class.java)
-        startActivity(intento)
+    if(modo=="usuario"){
+        vistaCrearTareas.visibility = View.GONE
+        vistaEjecucionTareas.visibility = View.VISIBLE
+        vistamenubotones.visibility = View.GONE
+        recyclerListaTareas.visibility = View.GONE
+        vistamenu.visibility = View.GONE
+        vistaAgregarResponsable.visibility = View.GONE
     }
+    if(modo=="administrador"){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Atencion!!")
+        builder.setMessage("Esta seguro que quiere eliminar la tarea ")
+        builder.setPositiveButton("Si",null)
+        builder.setNegativeButton("No",null)
+        val dialog: AlertDialog =builder.create();
+        dialog.show()
+        vistaCrearTareas.visibility = View.GONE
+        vistaEjecucionTareas.visibility = View.GONE
+        vistamenubotones.visibility = View.VISIBLE
+        recyclerListaTareas.visibility = View.VISIBLE
+        vistamenu.visibility = View.GONE
+        vistaAgregarResponsable.visibility = View.GONE
+        modo="usuario"
+    }
+
+    }
+
+
 
 }

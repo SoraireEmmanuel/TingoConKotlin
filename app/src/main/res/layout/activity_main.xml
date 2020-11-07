@@ -8,10 +8,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--Vista menu-->
+    <!--Vista menu botones-->
     <RelativeLayout
-    android:id="@+id/layoutmenu"
-    android:visibility="gone"
+    android:id="@+id/vistamenubotones"
+    android:visibility="visible"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -42,26 +42,14 @@
     </RelativeLayout>
     <!--Vista Menu-->
     <LinearLayout
+        android:id="@+id/vistamenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+        android:gravity="center"
     android:visibility="gone">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titulomenu"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10sp"
-        android:textSize="30sp"
-        android:textColor="#AEDCD8D8"
-        android:gravity="center"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#FFFCFC" />
-    <Switch
+
+        <Switch
         android:id="@+id/switch2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,7 +57,8 @@
         android:textColor="#72FFFFFF"
         android:layout_margin="5dp"
         android:textSize="24sp" />
-    <Button
+        <Button
+        android:id="@+id/botonAgregarTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/agregarTarea"
@@ -78,7 +67,8 @@
         android:layout_margin="5dp"
         android:textColor="#000000"/>
 
-    <Button
+        <Button
+        android:id="@+id/botonEliminarTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/eliminarTarea"
@@ -86,16 +76,9 @@
         android:background="#72FFFFFF"
         android:layout_margin="5dp"
         android:textColor="#000000" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/modificarTarea"
-        android:background="#72FFFFFF"
-        android:layout_margin="5dp"
-        android:textSize="24sp"
-        android:textColor="#000000" />
 
-    <Button
+        <Button
+        android:id="@+id/botonAgregarResponsable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#72FFFFFF"
@@ -103,26 +86,28 @@
         android:text="@string/agregarResponsable"
         android:textSize="24sp"
         android:textColor="#000000" />
+        <Button
+            android:id="@+id/botonVolver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#72FFFFFF"
+            android:layout_margin="5dp"
+            android:text="Salir del Menu"
+            android:textSize="24sp"
+            android:textColor="#000000" />
 </LinearLayout>
     <!--Vista Lista Tareas-->
     <androidx.recyclerview.widget.RecyclerView
          android:id="@+id/recyclerListaTareas"
-         android:visibility="gone"
+         android:visibility="visible"
          android:scrollbars="vertical"
          android:layout_width="match_parent"
          android:layout_height="match_parent"/>
-    <!--Vista Eliminar Tareas-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerEliminarTareas"
-        android:visibility="gone"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
     <!--Vista Ver Pasos-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ejecucionTareas"
+        android:id="@+id/vistaEjecucionTareas"
         android:visibility="gone"
         >
         <Button
@@ -133,16 +118,28 @@
             android:visibility="visible"
             android:drawableStart="@drawable/before"
             android:layout_margin="5dp"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_centerVertical="true"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:layout_width="match_parent"
             app:srcCompat="@drawable/ic_launcher_background"
             android:layout_margin="5dp"/>
-
+            <Button
+                android:id="@+id/botonAbandonarTarea"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:text="Abandonar Tarea"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -153,7 +150,8 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10">
+                android:layout_weight="10"
+                android:layout_margin="5dp">
             <TextView
                 android:id="@+id/descripcionPaso"
                 android:layout_width="match_parent"
@@ -179,12 +177,12 @@
             android:layout_margin="5dp"
              />
     </LinearLayout>
-    <!--Crear Tareas-->
+    <!--vista Crear Tareas-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ejecucionTareas2"
-        android:visibility="visible"
+        android:id="@+id/vistaCrearTareas"
+        android:visibility="gone"
         android:layout_margin="5dp"
         >
 
@@ -236,12 +234,14 @@
             android:layout_weight="2"
             android:orientation="horizontal">
         <Button
+            android:id="@+id/botonAgregarAyudaSonora"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:text="Agregar Ayuda Sonora"
             />
             <Button
+                android:id="@+id/botonCancelarCrearTarea"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
@@ -277,16 +277,68 @@
                 android:layout_weight="2"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/botonAgregarOtroPaso"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
                     android:text="Agregar Paso"/>
                 <Button
+                    android:id="@+id/botonTerminarGuardarTarea"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1.5"
-                    android:text="Terminar Tarea"/>
+                    android:text="Terminar y Guardar Tarea"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <!--vista Agregar Responsable-->
+    <LinearLayout
+        android:id="@+id/vistaAgregarResponsable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#68FFFEFE"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:hint="Nombre y Apellido"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:layout_height="0dp"
+        android:background="#68FFFEFE"
+        android:layout_weight="1"
+        android:hint="Telefono"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:background="#68FFFEFE"
+        android:layout_weight="1"
+        android:hint="Relacion con el paciente"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/botonGuardarAgregarResponsable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Guardar"/>
+        <Button
+            android:id="@+id/botonCancelarAgregarResponsable"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Cancelar"/>
+    </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>
