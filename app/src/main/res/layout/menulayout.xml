@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulomenu"
+        android:layout_margin="20sp"
+        android:textSize="30sp"
+        android:gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#000000" />
+
+
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/alertaCaida"
+            android:textSize="24sp" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregarTarea"
+            android:textSize="24sp"
+            android:textColor="#000000"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminarTarea"
+            android:textSize="24sp"
+            android:textColor="#000000" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/modificarTarea"
+            android:textSize="24sp"
+            android:textColor="#000000" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/agregarResponsable"
+            android:textSize="24sp"
+            android:textColor="#000000" />
+
+</LinearLayout>

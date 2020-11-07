@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">TingoConKotlin</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="title_activity_loguin">LoguinActivity</string>
+
+    /*splash*/
+    <string name="integrantes">Soraire Miguel Emmanuel</string>
+    <string name="materia">UTN - Diseño Centrado en el Usuario con Discapacidad</string>
+
+    /*login*/
+    <string name="tituloLogin">Medio de Autenticacion</string>
+    <string name="usuario">usuario</string>
+
+    /*main activity*/
+    <string name="salir">Salir</string>
+    <string name="configuracion">Menu</string>
+    <string name="titulomainactivitiy">Mis Tareas</string>
+
+    /*menu*/
+    <string name="titulomenu">Opciones</string>
+    <string name="alertaCaida">Alerta Caidas</string>
+    <string name="agregarTarea">Agregar Tarea</string>
+    <string name="eliminarTarea">Eliminar Tarea</string>
+    <string name="modificarTarea">Modificar Tarea</string>
+    <string name="agregarResponsable">Agregar Responsable</string>
+
+
+
+
+    /*ver pasos */
+    <string name="textPrueba">En este tip vamos a ver un ejemplo muy simple de animación para desplazar layouts y que se aplicará a una acción habitual como es mostrar/ocultar un layout. Las animaciones de Android tienen mucho más que ofrecernos y además fueron mejoradas en Honeycomb para hacer más fácil su uso e incluso poder modificar las propiedades de los objetos animados. Estas nuevas características se pueden usar en cualquier versión de Android ya que están incluídas en la librería de compatibilidad, aunque lo más práctico es utilizar NineOldAndroids, otra de las magníficas librerías Open Source creadas por Jake Wharton como por ejemplo ButterKnife.</string>
+    <string name="botonRepetirAudio">Repetir Ayuda Sonora</string>
+
+
+
+
+    <string name="title_activity_ejecucion_tarea">EjecucionTareaActivity</string>
+
+    <string name="title_activity_agregar_responsable">AgregarResponsableActivity</string>
+
+</resources>
